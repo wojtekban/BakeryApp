@@ -17,6 +17,7 @@
                 return this.Sum / this.Count;
             }
         }
+
         public string AverageLetter
         {
             get
@@ -36,6 +37,7 @@
                 }
             }
         }
+
         public Statistics()
         {
             this.Count = 0;
@@ -43,6 +45,7 @@
             this.Max = float.MinValue;
             this.Min = float.MaxValue;
         }
+
         public void AddPerformance(float performance)
         {
             this.Count++;
@@ -52,4 +55,4 @@
 
         }
     }
-}    
+}

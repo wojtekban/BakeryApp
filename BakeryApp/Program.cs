@@ -8,7 +8,7 @@ namespace BakeryApp
             WritelineColor(ConsoleColor.Magenta, "Witam w systemie rejestrowania wydajności i obliczania statystyk dla małych piekarni. ");
             WritelineColor(ConsoleColor.DarkMagenta, "================================================================================");
             Console.WriteLine();
-    
+
             bool CloseApp = false;
 
             while (!CloseApp)
@@ -45,23 +45,26 @@ namespace BakeryApp
             WritelineColor(ConsoleColor.DarkYellow, "\n\nKończymy na dziś. Zapraszam ponownie.");
             Console.ReadKey();
         }
+
         private static void WritelineColor(ConsoleColor color, string text)
         {
             Console.ForegroundColor = color;
             Console.WriteLine(text);
             Console.ResetColor();
         }
+
         static void BakeryPerformanceAdded(object sender, EventArgs args)
         {
             WritelineColor(ConsoleColor.DarkYellow, $"Dopisano produkcję dzienną piekarza w kg!");
         }
+
         private static void AddPerformanceBakeryInMemory()
         {
             string name = GetValueFromBaker("Podaj imię piekarza: ");
             string surName = GetValueFromBaker("Podaj nazwisko piekarza: ");
             if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(surName))
             {
-                var inMemoryBaker = new BakeryInMemory(name, surName);
+                var inMemoryBaker = new BakerInMemory(name, surName);
                 inMemoryBaker.PerformanceAdded += BakeryPerformanceAdded;
                 BakerPerformanceAdded(inMemoryBaker);
                 inMemoryBaker.ShowStatistics();
@@ -71,13 +74,14 @@ namespace BakeryApp
                 WritelineColor(ConsoleColor.Red, "Brak danych, wprowadź jeszcze raz");
             }
         }
+
         private static void AddPerformanceBakeryInFile()
         {
             string name = GetValueFromBaker("Podaj imię piekarza: ");
             string surName = GetValueFromBaker("Podaj nazwisko piekarza: ");
             if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(surName))
             {
-                var inFileBakery = new BakeryInFile(name, surName);
+                var inFileBakery = new BakerInFile(name, surName);
                 inFileBakery.PerformanceAdded += BakeryPerformanceAdded;
                 BakerPerformanceAdded(inFileBakery);
                 inFileBakery.ShowStatistics();
@@ -87,7 +91,8 @@ namespace BakeryApp
                 WritelineColor(ConsoleColor.Red, "Pracownik nie istnieje!, Spróbuj jeszcze raz");
             }
         }
-        private static void BakerPerformanceAdded(IBakery baker)
+
+        private static void BakerPerformanceAdded(IBaker baker)
         {
             while (true)
             {
@@ -112,12 +117,12 @@ namespace BakeryApp
                 }
             }
         }
+
         private static string GetValueFromBaker(string comment)
         {
             WritelineColor(ConsoleColor.Yellow, comment);
             string bakerInput = Console.ReadLine();
             return bakerInput;
         }
-    }    
-    
+    }
 }

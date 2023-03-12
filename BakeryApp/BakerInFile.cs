@@ -4,54 +4,17 @@ using System.Text;
 
 namespace BakeryApp
 {
-    public class BakeryInFile : BakeryBase
+    public class BakerInFile : BakerBase
     {
-        public BakeryInFile(string name, string surName) : base(name, surName)
+        public BakerInFile(string name, string surName) : base(name, surName)
         {
             fullFileName = $"{name}_{surName}{fileName}";
         }
 
         private const string fileName = "_wydajnosc.txt";
         private const string fileNameA = "Averenge.txt";
-
-        private string name;
-        private string surName;
         private string fullFileName;
 
-        public override string Name
-        {
-            get
-            {
-
-                return $"{char.ToUpper(name[0])}{name.Substring(1, name.Length - 1).ToLower()}";
-            }
-            set
-            {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    name = value;
-                }
-                
-            }
-        }
-
-        public override string SurName
-        {
-            get
-            {
-                return $"{char.ToUpper(surName[0])}{Name.Substring(1, surName.Length - 1).ToLower()}";
-   
-            }
-            set
-            {
-                if (!string.IsNullOrEmpty(value))
-                
-                {
-                    surName = value;
-                }
-
-            }
-        }
         public override event PerformanceAddedDelegate PerformanceAdded;
 
         public override void AddPerformance(float bakerPerformance)
@@ -71,8 +34,10 @@ namespace BakeryApp
                 else
                 {
                     throw new Exception("Proszę wybrać wydajność w kg z przedziału od 0 do 500");
-            }   }
+                }
+            }
         }
+
         public override void AddPerformance(string bakerPerformance)
         {
             if (float.TryParse(bakerPerformance, out float result))
@@ -84,11 +49,13 @@ namespace BakeryApp
                 throw new Exception("string in not float");
             }
         }
+
         public override void AddPerformance(double bakerPerformance)
         {
             float result = (float)bakerPerformance;
             this.AddPerformance(result);
         }
+
         public override Statistics GetStatistics()
         {
             var result = new Statistics();
@@ -107,6 +74,7 @@ namespace BakeryApp
             }
             return result;
         }
+
         public override void ShowPerformance()
         {
             StringBuilder sb = new StringBuilder($"{this.Name} {this.surName} wszystkie wydajności w kg: ");

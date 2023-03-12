@@ -1,14 +1,43 @@
 ﻿namespace BakeryApp
 {
-    public abstract class BakeryBase : Person, IBakery
+    public abstract class BakerBase : Person, IBaker
     {
         public delegate void PerformanceAddedDelegate(object sender, EventArgs args);
+        public abstract event PerformanceAddedDelegate PerformanceAdded;      
+        public  string name;
+        public string surName;
 
-        public abstract event PerformanceAddedDelegate PerformanceAdded;
-        public override string Name { get; set; }
-        public override string SurName { get; set; }
+        public override string Name
+        {
+            get
+            {
+                return $"{char.ToUpper(name[0])}{name.Substring(1, name.Length - 1).ToLower()}";
+            }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    name = value;
+                }
+            }
+        }
 
-        public BakeryBase(string name, string surName) : base(name, surName)
+        public override string SurName
+        {
+            get
+            {
+                return $"{char.ToUpper(surName[0])}{surName.Substring(1, surName.Length - 1).ToLower()}";
+            }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    surName = value;
+                }
+            }
+        }
+
+        public BakerBase(string name, string surName) : base(name, surName)
         {
             this.Name = name;
             this.SurName = surName;
@@ -23,6 +52,7 @@
         public abstract void AddPerformance(double bakerPerformance);
 
         public abstract Statistics GetStatistics();
+
         public void ShowStatistics()
         {
             var stat = GetStatistics();
@@ -50,7 +80,5 @@
                 Console.ResetColor();
             }
         }
-
-
     }
 }

@@ -15,26 +15,25 @@ namespace BakeryApp.Tests
 
             //act
 
-
             //assert
             Assert.AreEqual(baker1, baker2);
 
         }
+
         [Test]
         public void TestWhenToAddDecimalNumbersThenCompareIfTheyAreEqual()
         {
             //arrange
-            double baker1 =150.50;
+            double baker1 = 150.50;
             double baker2 = 150.50;
 
             //act
-
 
             //assert
             Assert.AreEqual(baker1, baker2);
 
         }
-       
+
         [Test]
         public void WhenToAddUsersThenCompareIfTheyAreEqual()
         {
@@ -43,7 +42,6 @@ namespace BakeryApp.Tests
             var baker2 = GetPerson("Kasia", "Lisewska");
 
             //act
-
 
             //assert
             Assert.AreNotEqual(baker1, baker2);

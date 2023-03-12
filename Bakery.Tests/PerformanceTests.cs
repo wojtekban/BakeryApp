@@ -9,7 +9,7 @@ namespace BakeryApp.Tests
         public void Test1()
         {
             // arrange
-            var baker = new BakeryInMemory("Wojtas", "Wojtasiñski");
+            var baker = new BakerInMemory("Wojtas", "Wojtasiñski");
             baker.AddPerformance(50.0);
             baker.AddPerformance(100.0);
             baker.AddPerformance(150.0);
