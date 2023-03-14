@@ -24,14 +24,14 @@
             {
                 switch (this.Average)
                 {
-                    case var average when average >= 100:
-                        return "Słaba średnia wydajność w kg";
-                    case var average when average >= 250:
-                        return "Dobra średnia wydajność w kg";
-                    case var average when average >= 350:
+                    case var average when average >= 500:
+                        return "Świetna średnia wydajność w kg";
+                    case var average when average >= 400:
                         return "Bardzo dobra średnia wydajność w kg";
-                    case var average when average >= 450:
-                        return "Świetna srednia wydajność w kg";
+                    case var average when average >= 300:
+                        return "Dobra średnia wydajność w kg";
+                    case var average when average >= 250:
+                        return "Słaba srednia wydajność w kg";
                     default:
                         return "Słaba, slaba srednia wydajność w kg";
                 }
